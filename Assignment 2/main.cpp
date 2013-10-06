@@ -11,7 +11,10 @@ float READING_DELAY = 0.2; // Delay between temperature readings, in ms.
 float DISP_TIME = 0.5; // Time to display each character, in s.
 float BLANK_TIME = 0.1; // Time to blank display between characters, in s.
 
-bool celsiusMode = true; // Temperature display mode. 'false' means Fahrenheit mode.
+// Temperature display mode. 'false' means Fahrenheit mode.
+// 'volatile' prevents the compiler from using a cached copy of this value at 
+// inopportune times, which may happen because it's modified during interrupts.
+volatile bool celsiusMode = true;
 
 
 float readSensor() {
